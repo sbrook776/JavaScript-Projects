@@ -1,12 +1,28 @@
-const btn = document.querySelector("#button");
+const button = document.querySelector("#button");
+const videoElement = document.querySelector("#video");
 
-function btnDown() {
-	btn.firstChild.style.transform = "translate(0, 1px)";
+// Prompt to select media stream, pass to video element, then play
+async function selectMediaStream() {
+	try {
+		const mediaStream = await navigator.mediaDevices.getDisplayMedia();
+		videoElement.srcObject = mediaStream;
+		videoElement.onloadedmetadata = () => {
+			videoElement.play();
+		};
+	} catch (error) {
+		// Catch error here
+		console.log("whoops, error here!", error);
+	}
 }
 
-function btnUp() {
-	btn.firstChild.style.transform = "translate(0, -1px)";
-}
+button.addEventListener("click", async () => {
+	// Disable button
+	button.disabled = true;
+	// Start picture in picture
+	await videoElement.requestPictureInPicture();
+	// Reset button
+	button.disabled = false;
+});
 
-btn.addEventListener("mousedown", btnDown);
-btn.addEventListener("mouseup", btnUp);
+// On load
+selectMediaStream();

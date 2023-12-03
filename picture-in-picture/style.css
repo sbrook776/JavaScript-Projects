@@ -21,26 +21,27 @@ body {
     background: black;
 }
 
-button {
+#button {
     cursor: pointer;
     color: white;
     outline: none;
     width: 120px;
     height: 75px;
+    border-radius: 10px;
     font-family: Barlow, sans-serif;
     font-size: 25px;
     text-shadow: 0 2px 5px black;
     background: rgba(233, 36, 36, 0.9);
     user-select: none;
-    box-shadow: inset -25px 25px 4px -19px rgba(218, 189, 189, 0.4), inset 25px -25px 4px -19px rgba(99, 41, 41, 0.4);
+    transform: translate(0, -1px);
+    box-shadow: inset -23px 23px 2px -19px rgba(218, 189, 189, 0.4), inset 23px -23px 2px -19px rgba(99, 41, 41, 0.4);
 }
 
-button:active {
-    box-shadow: none;
-
+#button:active {
+    transform: translate(0, 0.5px);
 }
 
-button span {
+#button span {
     display: inline-block;
 }
 
